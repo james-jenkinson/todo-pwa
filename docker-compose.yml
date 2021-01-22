@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  web-app:
+    container_name: react-application
+    build:
+      context: .
+      dockerfile: ./dockerfiles/local.dockerfile
+    ports:
+      - 8080:8080
+    volumes:
+      - ./src:/application/src
