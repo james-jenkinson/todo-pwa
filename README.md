@@ -4,7 +4,7 @@
 ![Deployment](https://github.com/james-jenkinson/react-typescript-webpack-template/workflows/Deployment/badge.svg)
 
 ## About this project
-Add some information here about this application
+This is an an example TODO application of a progressive web app. Data is stored locally on the user's machine using indexedDB.
 
 ## Development
 This is a react project written in typescript, and bundled via webpack. Css styling can be imported directly in component files to apply component styling. Continuous integration / deployment is handled with Github actions.
@@ -47,7 +47,7 @@ Continuous integration checks are run via Github actions. On each commit there r
 * Lint errors
 
 ## Deployment
-The application is deployed to the corresponding Github pages site of this repository (https://[owner].github.io/[repository])
+The application is deployed to the corresponding Github pages site of this repository (https://james-jenkinsono.github.io/todo-pwa)
 
 ### Continuous deployment
 The application uses Github actions to deploy the code. When a commit is pushed to master the deployment workflow is triggered, and will deploy the site.
