@@ -1,7 +1,7 @@
 # React Application
-![Linting](https://github.com/james-jenkinson/react-typescript-webpack-template/workflows/Linting/badge.svg)
-![Testing](https://github.com/james-jenkinson/react-typescript-webpack-template/workflows/Testing/badge.svg)
-![Deployment](https://github.com/james-jenkinson/react-typescript-webpack-template/workflows/Deployment/badge.svg)
+![Linting](../../workflows/Linting/badge.svg)
+![Testing](../../workflows/Testing/badge.svg)
+![Deployment](../../workflows/Deployment/badge.svg)
 
 ## About this project
 This is an an example TODO application of a progressive web app. Data is stored locally on the user's machine using indexedDB.
@@ -47,7 +47,7 @@ Continuous integration checks are run via Github actions. On each commit there r
 * Lint errors
 
 ## Deployment
-The application is deployed to the corresponding Github pages site of this repository (https://james-jenkinsono.github.io/todo-pwa)
+The application is deployed to the corresponding Github pages site of this repository (https://james-jenkinson.github.io/todo-pwa)
 
 ### Continuous deployment
 The application uses Github actions to deploy the code. When a commit is pushed to master the deployment workflow is triggered, and will deploy the site.
