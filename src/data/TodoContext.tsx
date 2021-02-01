@@ -1,4 +1,4 @@
-import React, { createContext, useCallback } from 'react'
+import React, { createContext, useCallback, useEffect } from 'react'
 import { Todo } from '../types/todo'
 import { todoReducer } from './todoReducer'
 import { todos } from './todoDatabase'
@@ -16,9 +16,11 @@ export const todoContext = createContext<TodoContext>({
 export const TodoContextProvider: React.FC = (props) => {
   const [todoState, dispatch] = todoReducer()
 
-  todos.toArray().then(result => {
-    dispatch({ type: 'FETCH_TODOS_SUCCESS', payload: result })
-  }).catch(() => {})
+  useEffect(() => {
+    todos.toArray().then(result => {
+      dispatch({ type: 'FETCH_TODOS_SUCCESS', payload: result })
+    }).catch(() => {})
+  }, [])
 
   const addTodo = useCallback(async (todo: Todo) => {
     dispatch({ type: 'ADD_TODO', payload: todo })
