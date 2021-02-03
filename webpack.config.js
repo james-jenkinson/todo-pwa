@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { InjectManifest } = require('workbox-webpack-plugin')
 const path = require('path')
 
 /** @typedef {import('webpack').Configuration} WebpackConfiguration */
@@ -14,7 +15,10 @@ const config = {
   },
 
   plugins: [
-    new HtmlWebpackPlugin({ template: './src/index.html' })
+    new HtmlWebpackPlugin({ template: './src/index.html' }),
+    new InjectManifest({
+      swSrc: './src/service-worker.ts'
+    })
   ],
 
   module: {
