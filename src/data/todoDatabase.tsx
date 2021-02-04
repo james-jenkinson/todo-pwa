@@ -6,4 +6,4 @@ db.version(1).stores({
   todos: '++_id, id, text, state'
 })
 
-export const todos = db.table<Todo>('todos')
+export const todoTable = db.table<Todo>('todos')

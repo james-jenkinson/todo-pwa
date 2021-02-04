@@ -1,0 +1,14 @@
+.todo-button {
+  background: none;
+  border-style: solid;
+  border-width: 0.5px;
+  border-color: grey;
+  box-shadow: 0px 0px 2px 1px rgb(0 0 0 / 20%);
+  width: 200px;
+  height: 80px;
+  font-size: 20px;
+}
+
+.todo-button--done {
+  text-decoration: line-through;
+}

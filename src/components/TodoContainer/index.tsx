@@ -12,6 +12,7 @@ const TodoContainer: React.FC = () => {
       {todos.map(todo => (
         <Todo
           key={todo.id}
+          id={todo.id}
           text={todo.text}
           status={todo.state}
         />
