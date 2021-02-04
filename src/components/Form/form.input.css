@@ -1,0 +1,8 @@
+.form-input--error {
+  border-color: #ba8475;
+}
+
+.form-input__error-label {
+  font-size: 10px;
+  color: #ba8475;
+}

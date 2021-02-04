@@ -1,32 +1,34 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import { todoContext } from '../../data/TodoContext'
 import { Todo } from '../../types/todo'
+import Form from '../Form'
+import * as yup from 'yup'
+
+const schema = yup.object({
+  text: yup.string().required('Please enter a name for the todo')
+})
 
 const AddTodo: React.FC = () => {
   const { addTodo } = useContext(todoContext)
-  const [text, setText] = useState('')
 
-  const createNewTodo = (e: React.FormEvent): void => {
-    e.preventDefault()
-
+  const createNewTodo = (payload: { text: string }): void => {
     const newTodo: Todo = {
       id: Date.now().toString(),
       state: 'not-done',
-      text: text
+      text: payload.text
     }
-    setText('')
     addTodo(newTodo)
   }
 
   return (
-    <form onSubmit={createNewTodo}>
-      <input value={text} onChange={e => setText(e.target.value)} />
+    <Form onSubmit={createNewTodo} schema={schema}>
+      <Form.Input name='text' />
       <button
         type='submit'
       >
         Add todo
       </button>
-    </form>
+    </Form>
   )
 }
 

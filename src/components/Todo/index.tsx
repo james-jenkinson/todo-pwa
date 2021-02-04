@@ -13,13 +13,15 @@ const Todo: React.FC<Props> = (props) => {
   const { setTodoStatus } = useContext(todoContext)
 
   return (
-    <button
-      className={`todo-button${props.status === 'done' ? ' todo-button--done' : ''}`}
-      onClick={() =>
-        setTodoStatus(props.id, props.status === 'done' ? 'not-done' : 'done')}
-    >
-      {props.text}
-    </button>
+    <div>
+      <button
+        className={`todo-button${props.status === 'done' ? ' todo-button--done' : ''}`}
+        onClick={() =>
+          setTodoStatus(props.id, props.status === 'done' ? 'not-done' : 'done')}
+      >
+        {props.text}
+      </button>
+    </div>
   )
 }
 
