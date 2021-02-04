@@ -10,7 +10,7 @@ interface Props {
 }
 
 const Todo: React.FC<Props> = (props) => {
-  const { setTodoStatus } = useContext(todoContext)
+  const { setTodoStatus, deleteTodo } = useContext(todoContext)
 
   return (
     <div>
@@ -20,6 +20,12 @@ const Todo: React.FC<Props> = (props) => {
           setTodoStatus(props.id, props.status === 'done' ? 'not-done' : 'done')}
       >
         {props.text}
+      </button>
+      <button
+        onClick={() =>
+          deleteTodo(props.id)}
+      >
+        x
       </button>
     </div>
   )

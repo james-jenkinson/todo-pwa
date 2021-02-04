@@ -6,12 +6,14 @@ import { todoTable } from './todoDatabase'
 interface TodoContext {
   todos: Todo[]
   addTodo: (todo: Todo) => void
+  deleteTodo: (todoId: string) => void
   setTodoStatus: (id: string, status: TodoStatus) => void
 }
 
 export const todoContext = createContext<TodoContext>({
   todos: [],
   addTodo: () => {},
+  deleteTodo: () => {},
   setTodoStatus: () => {}
 })
 
@@ -29,6 +31,11 @@ export const TodoContextProvider: React.FC = (props) => {
     await todoTable.add(todo)
   }, [])
 
+  const deleteTodo = useCallback(async (todoId: string) => {
+    dispatch({ type: 'DELETE_TODO', payload: { id: todoId } })
+    await todoTable.where({ id: todoId }).delete()
+  }, [])
+
   const setTodoStatus = useCallback(async (todoId: string, status: TodoStatus) => {
     console.log('set todo status', todoId, status)
     dispatch({ type: 'UPDATE_TODO_STATUS', payload: { id: todoId, status } })
@@ -42,6 +49,7 @@ export const TodoContextProvider: React.FC = (props) => {
       value={{
         todos,
         addTodo,
+        deleteTodo,
         setTodoStatus
       }}
     >
