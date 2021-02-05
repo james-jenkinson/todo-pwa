@@ -5,7 +5,7 @@ import FormInput from './Form.Input'
 
 interface Props<T extends {[key: string]: any}> {
   onSubmit: SubmitHandler<T>
-  children: React.ReactNode[]
+  children: React.ReactNode[] | React.ReactNode
   schema: any
 }
 

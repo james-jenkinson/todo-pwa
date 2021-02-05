@@ -22,6 +22,7 @@ type ReducerAction =
   { type: 'FETCH_TODOS_SUCCESS', payload: Todo[] } |
   { type: 'ADD_TODO', payload: Todo } |
   { type: 'DELETE_TODO', payload: { id: string } } |
+  { type: 'EDIT_TODO', payload: { id: string, data: Partial<Todo> } } |
   { type: 'UPDATE_TODO_STATUS', payload: { id: string, status: TodoStatus } }
 
 const reducer = (state: ReducerState, action: ReducerAction): ReducerState => {
@@ -45,6 +46,21 @@ const reducer = (state: ReducerState, action: ReducerAction): ReducerState => {
         ...state,
         byId: omit(state.byId, action.payload.id),
         todos: state.todos.filter(id => id !== action.payload.id)
+      }
+
+    case 'EDIT_TODO':
+      return {
+        ...state,
+        byId: {
+          ...state.byId,
+          [action.payload.id]: {
+            ...state.byId[action.payload.id],
+            data: {
+              ...state.byId[action.payload.id].data,
+              ...action.payload.data
+            }
+          }
+        }
       }
 
     case 'UPDATE_TODO_STATUS':

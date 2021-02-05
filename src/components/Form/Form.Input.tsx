@@ -4,11 +4,11 @@ import './form.input.css'
 
 interface Props {
   name: string
+  defaultValue?: string
 }
 
 const FormInput: React.FC<Props> = (props) => {
   const { register, errors } = useFormContext()
-  console.log('errors', errors[props.name])
   const error = errors[props.name]
 
   const isErrorState = error !== undefined
@@ -17,6 +17,7 @@ const FormInput: React.FC<Props> = (props) => {
     <div>
       <input
         className={isErrorState ? 'form-input--error' : ''}
+        defaultValue={props.defaultValue}
         name={props.name}
         ref={register}
       />

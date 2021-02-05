@@ -6,6 +6,8 @@ import { todoTable } from './todoDatabase'
 interface TodoContext {
   todos: Todo[]
   addTodo: (todo: Todo) => void
+  editTodo: (todoId: string, payload: Partial<Todo>) => void
+  selectTodo: (todoId: string) => Todo
   deleteTodo: (todoId: string) => void
   setTodoStatus: (id: string, status: TodoStatus) => void
 }
@@ -13,6 +15,8 @@ interface TodoContext {
 export const todoContext = createContext<TodoContext>({
   todos: [],
   addTodo: () => {},
+  editTodo: () => {},
+  selectTodo: (id) => ({ id, state: 'not-done', text: '' }),
   deleteTodo: () => {},
   setTodoStatus: () => {}
 })
@@ -36,8 +40,16 @@ export const TodoContextProvider: React.FC = (props) => {
     await todoTable.where({ id: todoId }).delete()
   }, [])
 
+  const editTodo = useCallback(async (todoId: string, payload: Partial<Todo>) => {
+    dispatch({ type: 'EDIT_TODO', payload: { id: todoId, data: payload } })
+    await todoTable.where({ id: todoId }).modify(payload)
+  }, [])
+
+  const selectTodo = useCallback((todoId) => {
+    return todoState.byId[todoId].data
+  }, [todoState])
+
   const setTodoStatus = useCallback(async (todoId: string, status: TodoStatus) => {
-    console.log('set todo status', todoId, status)
     dispatch({ type: 'UPDATE_TODO_STATUS', payload: { id: todoId, status } })
     await todoTable.where({ id: todoId }).modify({ state: status })
   }, [])
@@ -50,6 +62,8 @@ export const TodoContextProvider: React.FC = (props) => {
         todos,
         addTodo,
         deleteTodo,
+        editTodo,
+        selectTodo,
         setTodoStatus
       }}
     >
