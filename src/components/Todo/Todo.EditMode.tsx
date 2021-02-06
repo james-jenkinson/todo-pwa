@@ -23,7 +23,7 @@ const TodoEditMode: React.FC<Props> = (props) => {
   }
 
   return (
-    <Form onSubmit={onSubmit} schema={schema}>
+    <Form onSubmit={onSubmit} schema={schema} name='edit-todo-form'>
       <Form.Input name='text' defaultValue={todo.text} />
       <button type='reset' onClick={stopEditing}>Cancel</button>
       <button type='submit'>Update</button>

@@ -6,6 +6,7 @@ import FormInput from './Form.Input'
 interface Props<T extends {[key: string]: any}> {
   onSubmit: SubmitHandler<T>
   children: React.ReactNode[] | React.ReactNode
+  name: string
   schema: any
 }
 
@@ -21,7 +22,7 @@ const Form = <T,>(props: Props<T>): React.ReactElement => {
     <FormProvider
       {...methods}
     >
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} aria-label={props.name}>
         {props.children}
       </form>
     </FormProvider>

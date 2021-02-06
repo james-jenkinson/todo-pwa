@@ -11,8 +11,6 @@ const TodoDisplayMode: React.FC<Props> = (props) => {
   const todo = selectTodo(props.id)
   const { startEditing } = useContext(todoContainerContext)
 
-  console.log('todo display mode', props.id)
-
   return (
     <>
       <button

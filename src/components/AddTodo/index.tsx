@@ -21,7 +21,7 @@ const AddTodo: React.FC = () => {
   }
 
   return (
-    <Form onSubmit={createNewTodo} schema={schema}>
+    <Form onSubmit={createNewTodo} schema={schema} name='create-todo-form'>
       <Form.Input name='text' />
       <button
         type='submit'
